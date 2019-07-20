@@ -1,0 +1,104 @@
+1.java概述和环境准备
+	1.1 java的发展史
+		目前最新版本是jdk12，创始人是詹姆斯.高斯林，java最初属于sun公司，在09年被oracle公司收购，现在属于oracle公司
+	1.2 java的优势：跨平台性
+		平台：不同的操作系统
+		跨平台：可以在不同的操作系统上开发和运行java程序
+		跨平台的依据：jvm
+	1.3 jdk、jre、jvm的关系
+		jvm：java虚拟机
+		jre：java运行环境；jre=jvm+核心类库
+		jdk：java开发工具包；jdk=jre+开发工具
+		
+		包含关系：jdk>jre>jvm
+		
+		
+	1.4 安装jdk和配置环境变量(重点1)
+		配置JAVA_HOME：
+			新建JAVA_HOME，
+			变量名：JAVA_HOME
+			变量值：D:\develop\java
+		配置path环境变量：
+			在path中添加一个%JAVA_HOME%\bin
+2.人生的第一个java程序(重点2)
+	1.编写程序
+		1.1 新建一个java文件：HelloWorld.java
+		1.2 使用notepad打开文件，书写代码
+			/*
+				定义一个类，类名叫HelloWorld，和文件名保持一致。
+				类：java项目的最小组成单元。一个大的java项目都是有一个个java类组成
+			*/
+			public class HelloWorld{
+				/**
+					定义程序的入口方法，也就是main方法
+				*/
+				public static void main(String[] args){
+					//输出HelloWorld
+					System.out.println("HelloWorld");
+				}
+			}
+	2.编译程序
+		javac HelloWorld.java
+	3.运行程序
+		java HelloWorld
+3.java基础语法(重点3)
+	注释：java代码的说明性信息。告诉开发工程师代码的含义或者作用。
+		注释的分类：
+			单行注释：//注释内容
+			多行注释：/*注释内容*/
+			文档注释:/**注释内容*/
+	关键字：被java赋予特殊含义的英文单词就是关键字，我们不能再使用。
+		特点：高级记事本会让关键字变色。
+		public class static void true false null byte short int long float double boolean char
+	常量：在程序运行过程中不可以被改变的量就是常量
+		字符串常量：用双引号引起来。"HelloWorld"，"H",""
+		字符常量：用单引号引起来。'A','帅',''不可以
+		整数常量：10,20,300
+		小数常量：13.14,-5.21
+		布尔常量：true或者false
+		空常量：null
+		注意：不能输出''和空常量
+		
+	数据类型
+		基本数据类型：4类8种
+			整数类型：byte short int long
+			浮点数类型：float double
+			布尔类型：boolean
+			字符类型：char
+			
+			注意事项：整数类型默认是int，浮点数类型默认是double
+			
+		引用数据类型：除了基本数据类型其他的都是引用数据类型，String，类、接口、数组
+	变量：在程序运行的过程中在一定范围内发生改变的量就是变量。
+		定义变量的格式：
+			数据类型 变量名=值;
+		使用变量：
+			直接输出变量：
+				System.out.println(变量名);
+			给变量赋值：变量名=新的值；
+		注意事项：
+			1.变量名不能重复
+			2.变量必须要先赋值再使用
+			3.定义long类型的变量，需要在值后面加L，例如 long g=1000L;
+			4.定义float类型的变量，需要在值后面加F，例如 float f=12.2F;
+			5.定义的变量只在所属的{}内使用，不在{}内就不能使用这个变量。
+			
+案例：
+	public class VariableDemo2{
+		public static void main(String[] args){
+			//定义一个byte类型的变量  -128~127
+			byte b=100;
+			//输出变量的值
+			System.out.println(b);
+			//重新赋值并输出
+			b=120;//200默认是int，由于超出了byte的范围，jvm就不能帮我们转换类型。
+			System.out.println(b);
+			
+			int c=500;
+			System.out.println("c="+c);
+			
+			//将变量b的值赋值给变量c
+			c=b;
+			System.out.println("c="+c);
+		}
+	}

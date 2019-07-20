@@ -1,0 +1,136 @@
+今日内容
+1.break和continue关键字以及循环嵌套
+	1.1 break和continue的区别？
+		continue表示跳过当前循环，继续执行下一次循环break表示结束整个循环。
+		案例：
+			public static void main(String[] args) {
+				//1.定义一sum变量累加
+				int sum=0;
+				//2.键盘录入，导包、创建对象、接收数据
+				Scanner sc=new Scanner(System.in);
+				//3.使用while循环接收数据
+				while(true){
+					//接收数据
+					int num=sc.nextInt();
+					//判断是否是0，如果是0那么就跳出循环
+					if(num==0){
+						break;
+					}
+					//累加
+					sum+=num;
+				}
+				//打印结果
+				System.out.println("sum="+sum);
+			}
+	1.2 循环嵌套：一般是两层循环的嵌套
+		for(初始化语句;条件判断语句;条件控制语句){
+			//循环体
+			for(初始化语句;条件判断语句;条件控制语句){
+				//循环体
+			}
+		}
+		例如：
+			for(int i=1;i<=5;i++){
+				for(int j=1;j<=5;j++){
+					//循环体
+				}
+			}
+		执行流程：
+			当i=1时，内循环的j从1到5都会循环执行一次；
+			当i=2时，内循环的j从1到5都又会循环执行一次；
+			...
+			外循环的i每改变一次，内循环都需要循环5次
+		案例：九九乘法表
+			public class ForTest4{
+				public static void main(String[] args) {
+					for(int i=1;i<=9;i++){
+						//内循环执行完了之后就会在一行打印9个@  @@@@@@@@@
+						for(int j=1;j<=i;j++){
+							System.out.print(i+"*"+j+"="+(i*j)+"\t");
+						}
+						//换行
+						System.out.println();
+					}
+				}
+			}
+		2.随机数据使用步骤
+			1.在类上面导包
+				import java.utils.Random;
+			2.创建对象
+				Random r=new Random();
+			3.获取随机数
+				int num=r.nextInt(随机数的最大值，但不包括这个值);
+			案例：猜数字
+				public static void main(String[] args) {
+					//要完成猜数字的游戏，首先需要有一个要猜的数字，使用随机数生成该数字，范围1到100
+					Random r = new Random();
+					int number = r.nextInt(100) + 1;
+					
+					while(true) {
+						//使用程序实现猜数字，每次均要输入猜测的数字值，需要使用键盘录入实现
+						Scanner sc = new Scanner(System.in);
+						
+						System.out.println("请输入你要猜的数字：");
+						int guessNumber = sc.nextInt();
+						
+						//比较输入的数字和系统产生的数据，需要使用分支语句。这里使用if..else..if..格式，根据不同情况进行猜测结果显示
+						if(guessNumber > number) {
+							System.out.println("你猜的数字" + guessNumber + "大了");
+						} else if(guessNumber < number) {
+							System.out.println("你猜的数字" + guessNumber + "小了");
+						} else {
+							System.out.println("恭喜你猜中了");
+							break;
+						}
+					}
+				}
+3.idea开发工具的安装、使用
+	常见的快捷键：
+	
+	快速生成语句
+	    快速生成main()方法：psvm，回车
+	    快速生成输出语句：sout，回车
+		.var自动生成=左边的变量
+		soutv自动打印变量名和值
+		数组名.fori + 按回车
+    内容辅助键
+	    Ctrl+Alt+space(内容提示，代码补全等)
+
+    快捷键：
+       	注释：
+       	    单行：选中代码，Ctrl+/，再来一次，就是取消
+            多行：选中代码，Ctrl+Shift+/，再来一次，就是取消
+
+        格式化
+	        Ctrl+Alt+L
+4.数组
+	数组：能够一次性存储多个同类型数据的结构。
+	数组的定义格式和初始化：
+		推荐：数据类型[] 数组名;
+		例如：int[] arr;
+	创建并初始化：
+		动态初始化：创建数组的时候指定数组的长度并有系统赋予默认值。
+			数据类型[] 数组名=new 数据类型[长度];例如：
+			int[] arr=new int[3];
+			
+		静态初始化：创建数组的时候指定初始化值，有系统根据值确定长度。
+			复杂的写法：数据类型[] 数组名=new 数据类型[]{值1,值2,...};
+			简化的写法：数据类型[] 数组名={值1,值2,...};
+			例如：int[] arr={100,200,300};
+	访问数组：
+		打印数组名称：结果是地址值，数组内存中占用的空间的编号。相当于教室的门牌号
+		
+		获取值：
+			数据类型 变量名=数组名[索引];可以使用变量接收，也可以直接打印  例如： int a=arr[0];
+		赋值(存值)：
+			数组名[索引]=值;
+		获取长度:
+			int length = 数组名.length;  //.var自动生成左边的变量
+		注意事项：索引的初始值从0开始，最大值数组的长度-1；
+	常见的小问题：
+        1.数组索引越界异常：
+           ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+           
+        2.空指针异常：.前面的对象是null就会出现空指针异常
+            Exception in thread "main" java.lang.NullPointerException
+		

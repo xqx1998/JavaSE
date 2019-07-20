@@ -1,0 +1,78 @@
+1.break和continue关键字以及循环嵌套
+    1.1 break和continue的区别？
+        break是结束整个循环，continue是结束当前循环，继续执行下一次循环。
+    1.2 循环嵌套 for循环为例
+        for(初始化语句;条件判断语句;条件控制语句){
+            for(初始化语句;条件判断语句;条件控制语句){
+                //循环体
+            }
+        }
+        案例：九九乘法表
+        for(int i=1;i<=9;i++){
+            for(int j=1;j<=i;j++){
+                sout();
+            }
+        }
+2.Random生成随机数
+    1.在类上面导包
+        import java.util.Random;
+    2.创建随机数对象
+        Random r=new Random();
+    3.生成一个指定范围的随机数
+        int num=r.nextInt(范围值); //生成一个从0到范围值-1的数
+    案例：猜数字
+3.idea的使用快捷键
+    快速生成语句
+        快速生成main()方法：psvm，回车
+        快速生成输出语句：sout，回车
+
+        .var自动生成=左边的变量
+        soutv自动打印变量名和值
+        数组名.fori + 按回车   遍历数组
+    内容辅助键
+        Ctrl+Alt+space(内容提示，代码补全等)
+        Ctrl+d 复制当前行
+        Ctrl+y 删除当前行
+    快捷键：
+        注释：
+            单行：选中代码，Ctrl+/，再来一次，就是取消
+            多行：选中代码，Ctrl+Shift+/，再来一次，就是取消
+
+        格式化
+            Ctrl+Alt+L
+4.数组
+    概念：用于存储多个同类型数据的结构就是数组
+    初始化方式
+        动态初始化：定义数组时指定长度，由系统赋默认值。
+            int[] arr=new int[10];
+            String[] arr=new String[10];
+            ...
+        静态初始化：定义数组时指定值，由系统计算长度
+            int[] arr=new int[]{值1,值2,...};
+            推荐写简化的方式：
+            int[] arr={值1,值2,...};
+    操作数组：
+        取值：根据索引取值，数据在数组中的编号就是索引，索引从0开始，最大值为数组的长度-1；
+            int a=arr[0];
+            int b=arr[1];
+            ...
+            注意：索引越界异常：ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+        赋值：根据索引赋值
+            arr[0]=值;
+            arr[1]=值;
+            ...
+        获取长度：
+            int length=arr.length;
+        遍历：快捷键：  数组名.fori+回车
+            遍历赋值：
+                for(int i=0;i<arr.length;i++){
+                      arr[i]=值;
+                }
+            遍历取值：
+                for(int i=0;i<arr.length;i++){
+                      int num=arr[i];
+                      //也可以直接打印
+                      sout(arr[i]);
+                }
+        案例：获取数组中的最大值
