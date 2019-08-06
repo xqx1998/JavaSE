@@ -23,4 +23,9 @@ public class CollectionUtil {
         list.forEach(t -> result.add(function.apply(t)));
         return result;
     }
+
+/*    public static <T,R> R convertOne(T t, Function<T,R> function){
+        R result = null;
+        return () -> result = {function.apply(t);};
+    }*/
 }

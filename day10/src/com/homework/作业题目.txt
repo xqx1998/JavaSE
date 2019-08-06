@@ -1,0 +1,116 @@
+第一题：补全代码
+    1、已知有一个接口：
+        interface Inter{
+            void show();//默认修饰符为public abstract
+        }
+    2、已知一个类如下：
+        class Outer{
+
+            //根据下面的OuterDemo测试类的方法调用和输出结果，补全Outer类中的代码使测试类中的输出成立。
+
+        }
+    public class OuterDemo {
+        public static void main(String[] args) {
+            Outer.method().show();//输出HelloWorld
+        }
+    }
+
+
+第二题：有如下代码，请说出输出结果
+    class Person{
+    	public void eat(){
+    		System.out.println("在吃饭..");
+    	}
+        public void run(){
+            System.out.println("在跑..");
+    	}
+    }
+
+    interface Dao{
+    	public void add();
+    }
+
+
+
+    class Outer{
+        //在Outer中定义print()方法
+    	public void print(){
+    		//继承关系下的匿名内部类
+    		new Person(){
+    			//匿名内部类的成员
+    			public void sleep(){
+    				System.out.println("在睡觉..");
+
+    			}
+
+    		}.eat();
+    	}
+    	//在Outer中定义show()方法
+    	public void show(){
+    		//这里创建的不是Dao接口的对象，创建的是Dao接口实现类的对象。
+    		new Dao(){
+
+    			public void add(){
+    				System.out.println("添加成功..");
+    			}
+    		}.add();
+
+    	}
+    }
+    //测试了
+    public class  OuterDemo{
+    	public static void main(String[] args){
+    		Outer outer = new Outer();
+    		outer.print();
+    		outer.show();
+    	}
+    }
+
+第三题：代码补全
+    interface Product{
+        public double getPrice();
+        public String getName();
+    }
+
+    public class AnonymousTest {
+        public  void test(Product p){
+            System.out.println("购买了一个"+p.getName()+",花掉了"+p.getPrice());
+
+        }
+
+        public static void main(String[] args) {
+            AnonymousTest ta= new AnonymousTest();
+            //补全代码：调用AnonymousTest的test方法，使之打印"购买了一个小米手机,花掉了2999元。提示：使用匿名内部类实现
+
+        }
+
+    }
+
+第四题：生成一个随机100内小数，转换为保留两位小数的字符串，不考虑四舍五入的问题。
+        打印效果如下：
+            随机数为：
+            86.217840985496
+            转换为：
+            86.21
+        提示：将随机数结果转换成String字符串，查阅String类进行字符串截取即可
+第五题：不运行说出下面代码的运行结果
+    public class ToStringTest{
+        static int i = 1;
+        public static void main(String args[]){
+            System.out.println("love " + new ToStringTest());//love java
+            ToStringTest a = new ToStringTest();
+            a.i++;
+            System.out.println("me " + a.i);//me 2
+        }
+        public String toString(){
+            System.out.print("I ");//I
+            return "java ";
+        }
+    }
+
+第六题：
+    定义一个Student类，有private修饰的name和age成员变量，生成空参和有参构造方法，get/set方法。
+    写一个StudentTest测试类，创建两个Student对象，如果对象的name和age一样，那么则认为是同一个人，比较结果为true。
+
+第七题：尝试使用冒泡排序对下面的数组进行降序排序
+    int[] arr={24,69,80,57,13};
