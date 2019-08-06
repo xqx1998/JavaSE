@@ -19,7 +19,7 @@ public class AnimalDemo {
         operator.useAnimal(new Animal() {
             @Override
             public void eat() {
-                System.out.println("🐶吃骨头");
+                System.out.println("吃骨头");
             }
         });
     }

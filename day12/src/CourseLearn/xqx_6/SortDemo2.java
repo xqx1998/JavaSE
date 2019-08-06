@@ -1,6 +1,5 @@
 package CourseLearn.xqx_6;
-
-import com.itheima_5.Person;
+import CourseLearn.xqx_5.Person;
 
 import java.util.Arrays;
 

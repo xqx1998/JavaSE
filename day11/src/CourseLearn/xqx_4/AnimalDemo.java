@@ -1,7 +1,5 @@
 package CourseLearn.xqx_4;
 
-import com.itheima_4.Dog;
-
 public class AnimalDemo {
     public static void main(String[] args) {
         //创建猫对象，使用父类接收
