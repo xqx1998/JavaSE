@@ -1,0 +1,87 @@
+1 包装类
+    1 每个基本数据类型对应的包装类
+      byte          Byte
+      short         Short
+      int           Integer（记住）
+      long          Long
+      float         Float
+      double        Double
+      char          Character
+      boolean       Boolean
+
+    2 int和String相互转换
+        int--->String
+            String s=100+"";
+        String--->int
+            int num=Integer.parseInt("100");
+        注意：parseInt的参数值只能是整数形式的字符串，否则出现NumberFormatException异常。
+
+2 日期和时间类
+    Date：日期类
+        构造方法：
+            Date()：创建一个系统当前时间的日期对象。
+        成员方法：
+            long getTime():获取当前时间的毫秒值。
+    SimpleDateFormat：日期格式化类
+        构造方法：
+            SimpleDateFormat(String format):根据指定模式创建格式化对象
+            模式：
+                年   y
+                月   M
+                日   d
+                时   H/h
+                分   m
+                秒   s
+                星期：E
+            常见的模式：yyyy-MM-dd HH:mm:ss   yyyy年MM月dd日 HH:mm:ss
+        成员方法：
+            String format(Date date):将date格式化成String
+            Date parse(String date):将String类型的日期转换成Date对象。
+    Calendar：日历类，抽象类
+        获取对象：
+            Calendar c=Calendar.getInstance();
+        成员方法：
+            int get(int Field):根据字段常量获取对应的值，常量有：YEAR MONTH DATE HOUR MINUTE SECOND
+            void add(int Field,int value):对年月日时分秒经常加减操作。
+            void set(int year,int month,int date):设置年月日
+    总结：
+        1、如果只是获取系统当前时间，那么选择Date对象
+        2、如果需要格式化当前时间，选择SimpleDateFormat对象
+        3、如果需要对日期或者时间进行加减操作，那么选择Calendar对象
+3 异常
+    异常的两种处理方式：(重点******)
+    方式1：try...catch...catch...捕获异常。
+        语法：
+            try{
+                //可能出现异常的代码
+            }catch(异常类型 异常对象名){
+                //处理异常的代码
+            }catch(异常类型 异常对象名){
+                //处理异常的代码
+            }...
+            后续代码...
+
+            执行流程：
+                1、执行try中的代码，如果try中没有发生异常，那么将不会执行任何catch中的代码，直接执行try...catch后面的后续代码
+                2、如果try中出现了异常，那么try中异常后面的代码都不执行，jvm会创建异常对象，匹配catch中定义的异常类型，
+                    执行对应catch中的异常处理代码。执行完成之后继续执行try...catch后面的后续代码
+    方式2：使用throws关键字抛出异常，表示自己不处理，抛给调用者处理。如果都不处理，最终会抛给jvm处理，jvm会中断处理。
+        注意：该关键字使用方法申明上。
+
+    总结：在开发中异常的处理方式：(重点******)
+        在开发中，我们会使用各种各样的api，有些api方法中抛出异常，尤其是编译期异常。我们碰到编译期异常，那么必须要选择一种处理方法。
+        如果自己不想处理，那么就选择使用throws关键字抛出异常(俗称甩锅)。如果自己像处理，那么就使用try...catch捕获异常进行处理(俗称接盘)
+
+    扩展：finally代码块：表示最终要执行的意思。只能和try或者try...catch连用，不能单独使用。
+        作用：finally代码块中的代码不管是否出现异常，都能够执行到。一般用来释放资源(以后在IO流知识讲解)
+
+
+
+    了解：自定义异常，当自己定义框架给别人用的时候会涉及到自定义异常。
+        自定义异常的思路：
+            1、定义一个类继承Exception或者RuntimeException；
+            2、重写空参构造和一个参数的构造。
+            3、在合适的位置使用自定义异常，方式如下：throw new 自定义异常(异常信息);
+    throws和throw的区别？
+        1、throws使用在方法声明上，表示遇到异常的两种处理方式之一
+        2、throw使用在方法体中，表示人为的主动制造一个异常并抛出。

@@ -18,6 +18,6 @@ public class StudentTest {
         s.doHomework();
 
         //Student是一个引用数据类型，引用数据类型的对象需要使用new关键字来创建。
-        System.out.println(s);//全类名@地址值：com.xqx_2.Student@6b71769e
+        System.out.println(s);//全类名@地址值：com.xqx_2_Collection.Student@6b71769e
     }
 }

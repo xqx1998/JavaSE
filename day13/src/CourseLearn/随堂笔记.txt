@@ -1,0 +1,125 @@
+1 基本数据类型的包装类
+    1、4类8中基本数据类型对应的包装类分别是什么？
+        包装类：每一种基本数据类型都会对应一个引用数据类型的类，这个类就叫做这个基本数据类型的包装类
+        基本数据类型和包装类的对应关系：
+            byte            Byte
+            short           Short
+            int             Integer(特殊，记住)
+            long            Long
+            float           Float
+            double          Double
+            char            Character(特殊，了解)
+            boolean         Boolean
+    2、什么是自动装箱和自动拆箱？
+        自动装箱：int类型数据能自动转换成Integer类型。Integer i=100；是可以的。
+        自动拆箱：Integer类型数据能自动转换成int类型。int num=i；也是可以的。
+    3、int和String相互转换(重点)
+        int----->String:
+            方式一：
+                String s=String.valueOf(int i);
+            方式二：
+                String s=num+"";
+        String----->int
+            int i = Integer.parseInt("120");
+        注意事项：转换的字符串必须是整数形式的字符串，否则会出现如下异常：java.lang.NumberFormatException: For input string: "itheima"
+        下面的做法是错误：
+            int i1 = Integer.parseInt("itheima");
+
+        //扩展，字符串小数转换成double或者float
+        double d = Double.parseDouble("13.14");
+        System.out.println(d);
+
+        float f = Float.parseFloat("5.20");
+        System.out.println(f);
+
+    总结：
+        1、掌握基本数据类型对应的包装类对象，有两个特殊(Integer和Character)，其他的首字母变大写就是包装类对象。
+        2、掌握int和String相互转换。
+
+2 日期时间类：学习这些类的常用构造方法和成员方法
+    1、 Date类：表示日期和时间
+            构造方法：重点掌握空参构造
+                Date​()：创建一个当前系统日期和时间的Date对象。(重要)
+                Date(long millis):创建一个指定时间的Date对象，从1970年1月1日 08时00分00秒000毫秒开始加上给定的毫秒值。中国属于东八区
+            成员方法：
+                long getTime():获取Date对应时间的毫秒值
+                应用场景：用于计算时间。
+                需求：将时间定位到明天的此时此刻。
+                    public class DateDemo2 {
+                        public static void main(String[] args) {
+                            //创建Date对象，当前时间
+                            Date d1=new Date();
+                            System.out.println(d1);
+
+                            //将d1转换成毫秒值
+                            long time = d1.getTime();
+                            //将毫秒值加 + 24*60*60*1000
+                            long newTime=time+24*60*60*1000;
+                            //重新创建Date对象，传递计算后的毫秒值就是明天的此时此刻
+                            Date d2=new Date(newTime);
+                            System.out.println(d2);
+                        }
+                    }
+    2、 SimpleDateFormat类：格式化或者解析日期时间
+            构造方法：
+                public SimpleDateFormat​(String pattern):使用参数给定的模式创建格式化对象
+                模式：
+                    年：y
+                    月：M
+                    日：d
+                    时：H/h
+                    分：m
+                    秒：s
+                    毫秒：S
+                    星期：E
+                常用的组合模式：yyyy-MM-dd HH:mm:ss 、 yyyy年MM月dd日 HH:mm:ss
+
+            成员方法：
+                String format​(Date date)： 将日期格式化成日期/时间字符串。
+                Date parse​(String source)：从给定字符串的开始解析文本以生成日期。
+                注意：如果字符串和SimpleDateFormat构造中的模式不一致，就会出现ParseException解析异常。
+
+    3、 Calendar类:日历类
+            获取对象：通过静态方法获取对象
+                Calendar c=Calendar.getInstance();
+            成员方法：
+                int	get​(int field):返回给定日历字段的值。
+                    可传递的字段(静态常量)有:YEAR  MONTH   DATE   HOUR   MINUTE   SECOND
+                    例如：获取年：int year=c.get(Calendar.YEAR)
+                    注意：月份是从0开始的，我们获取的月份要+1；
+                void set​(int year, int month, int date）：设置年月日，月份是从0开始
+                void add​(int field, int amount)：对日期和时间执行加减运算。给的字段如果是YEAR，那么就表示加减几年，...
+    总结：
+        1、如果只是像获取当前日期和时间，那么就使用Date对象。Date d=new Date();
+        2、如果需要对日期Date对象进行格式化，那么就需要使用SimpleDateFormat对象
+        3、如果需要对年月日进行设置和加减操作(换一句话说就是要操作日期)，那么选择Calendar日历对象。
+
+3 异常处理
+    概念：
+        异常的顶层父类：Throwable，这个类有两个子类分别是Error和Exception。
+
+        Error错误和Exception异常的区别？
+            Error错误一旦出现就无法避免，只能通过修改程序的源代码来解决。
+            Exception异常是可能出现的问题，可以避免的。例如我们之前解析时间字符串的时候就有一个异常
+
+        异常又分为运行期异常(RuntimeException)和编译期异常(非RuntimeException)：
+            运行期异常(RuntimeException：在程序编译的时候不会出现红色的报错下划线，运行之后如果有问题才报错。例如：索引越界异常
+            编译期异常(非RuntimeException)：在程序编译的时候会出现红色的报错下划线，我们必须要处理这种异常。例如：ParseException解析异常
+
+    1、异常处理的两种方式(掌握)
+        jvm默认处理方案；中断处理，从出现异常的那一行代码开始，后面的代码都不执行了。jvm会将异常信息以红色字体展示到控制台。
+
+        方式1：try...catch...catch...处理，快捷键：ctrl+alt+t选择try/catch
+            try{
+                //可能出现异常的代码
+            }catch(异常类型 异常对象名){
+                //处理异常的代码
+            }catch(异常类型 异常对象名){
+                //处理异常的代码
+            }...
+            后续代码...
+            执行流程：
+                1、执行try中的代码，如果try中没有发生异常，那么将不会执行任何catch中的代码，直接执行try...catch后面的代码
+                2、如果try中出现了异常，那么jvm会创建异常对象，匹配catch中定义的异常类型，执行对应catch中的代码。执行完成之后继续执行
+                    try...catch后面的代码
+    2、自定异常(了解)

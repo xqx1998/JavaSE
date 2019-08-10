@@ -1,0 +1,57 @@
+集合的第一天：Collection--->List--->ArrayList/LinkedList
+1、集合的体系结构和Collection接口
+    体系结构：
+        单列集合：Collection接口
+            List接口：可以存储重复元素（今天学）
+                ArrayList类和LinkedList类
+            Set接口：（明天学），不可以存储重复元素
+        双列集合：Map接口（后天）
+2、List集合
+    List集合的特点：（记忆）
+        1、有序：存和取的顺序一致
+        2、可以存储重复元素
+        3、可以使用索引。
+
+    List和Collection接口的常用方法总结：（重点*****）
+        添加：
+            boolean add(E e):将元素添加到集合的末尾。
+            void add(int index,E e):将元素添加到指定索引index位置。
+        移除：
+            boolean remove(E e)：直接移除元素
+            E remove(int index):根据索引移除元素，返回值为被移除的元素。
+        设置：
+            E set(int index,E e):将index索引处的值替换成第二个参数值e，返回值为被替换的元素。
+        获取
+            int size():获取集合的长度。
+            E get(int index)：根据索引获取元素。
+        遍历的三种方式
+            方式1：fori遍历(重点掌握)，也可以倒着遍历
+                for(int i=0;i<list.size();i++){
+                   E e=list.get(i); //element:元素，简写e
+                }
+            方式2：迭代器（了解，很少用）
+                //1、使用集合对象获取迭代器对象，iterator()
+                Iterator it=list.iterator();
+                //2、循环遍历调用迭代器的hasNext()方法判断是否有下一个元素
+                while(it.hasNext()){
+                    //3、如果有下一个元素，就调用迭代器的next()方法获取下一个元素
+                    E e=it.next();
+                }
+                注意；在while循环中不能使用集合添加元素和移除元素，否则出现并发修改异常。ConcurrentModificationException
+            方式3：增强for循环（重点掌握）
+                注意：：增强for循环底层使用的迭代器，索引在增强for循环内部不能使用集合添加元素和移除元素
+                语法：
+                    for(集合/数组元素类型 变量名:集合/对象名){
+                        //变量就是遍历出来的元素
+                    }
+                例如：
+                    for(E e:list){
+                        //e就是遍历出来的每个元素
+                    }
+3、ArrayList/LinkedList
+   数据结构特点：（了解）
+        栈结构：先进后出，类似于弹夹。
+        队列结构：先进显出，类似于排队。
+   ArrayList和LinkedList集合特点：
+        ArrayList：底层是数组结构，查询快，增删慢。（最常用）
+        LinkedList：底层是链表结构，查询慢，增删快。
