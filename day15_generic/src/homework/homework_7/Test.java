@@ -27,6 +27,7 @@ public class Test {
         }
         System.out.println();
 
+
         //测试反转 字符串数组
         strs = (String[]) generic.reserves(strs);
         System.out.println("指定位置交换元素并反转数组后：");
@@ -37,19 +38,27 @@ public class Test {
         System.out.println();
         //测试反转 整型数组
         Integer[] ints = new Integer[]{1,2,3,4,5,6};
+        System.out.println("原数组：");
+        for (Integer integer : ints) {
+            System.out.print(integer+"  ");
+        }
+        System.out.println();
         ints = (Integer[]) generic.reserves(ints);
-        System.out.println("指定位置交换元素并反转数组后：");
+        System.out.println("反转数组后：");
         for (Integer i : ints) {
             System.out.print(i + "  ");
         }
     }
 }
 /**
- * 运行结果：
- * 原数组：
- * hello  world  Java  web  dev
- * 指定位置交换元素后：
- * dev  world  Java  web  hello
- * 指定位置交换元素并反转数组后：
- * hello  web  Java  world  dev
+ 原数组：
+ hello  world  Java  web  dev
+ 指定位置交换元素后：
+ dev  world  Java  web  hello
+ 指定位置交换元素并反转数组后：
+ hello  web  Java  world  dev
+ 原数组：
+ 1  2  3  4  5  6
+ 反转数组后：
+ 6  5  4  3  2  1
  */
